@@ -26,6 +26,33 @@ test('config', function(t) {
     t.end();
 });
 
+test('proto', function (t) {
+    t.test('non-enumerable properties', function (t) {
+        var flow, proto, result;
+        var nonEnumProps = [];
+
+        var nonEnumMethods = ['getCurrentExecution', 'getNextState', 'execute'];
+
+        flow = machine.create({
+            definition: require('./fixtures/default')
+        });
+
+        proto = Object.getPrototypeOf(flow);
+
+        Object.getOwnPropertyNames(proto).forEach(function (prop) {
+            if (!proto.propertyIsEnumerable(prop)) {
+                nonEnumProps.push(prop);
+            }
+        });
+
+        result = nonEnumMethods.every(function (prop) {
+            return ~nonEnumProps.indexOf(prop);
+        });
+
+        t.ok(result, 'internal methods aren\'t enumerable');
+        t.end();
+    });
+});
 
 test('create', function (t) {
     var flow, states;
