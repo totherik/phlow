@@ -35,7 +35,9 @@ test('create', function (t) {
     });
 
     t.test('initial state', function (t) {
+        var time = process.hrtime();
         flow.run(undefined, undefined, function (err, result) {
+            console.log(process.hrtime(time));
             t.error(err);
             t.ok(result);
             t.ok(result.states);

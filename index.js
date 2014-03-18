@@ -9,24 +9,27 @@ module.exports = function middleware(options) {
 
     flow = machine.create(options);
 
-    return function(res, res, next) {
-        var key, state;
+    return function(req, res, next) {
+        var context, state;
 
-        key = req.param(c.EXECUTION_KEY);
+        context = {
+            key: req.param(c.EXECUTION_KEY),
+            eventId: req.param(c.EVENT_ID)
+        };
+
         state = req.session[c.SESSION_KEY];
 
-        flow.run(key, state, function (err, result) {
+        flow.run(context, state, function (err, result) {
             if (err) {
                 next(err);
                 return;
             }
 
             req.session[c.SESSION_KEY] = result.state;
-            res.webflow = res.webflow || {};
-            res.webflow.model = result.model;
+            res.phlow = res.phlow || {};
+            res.phlow.model = result.model;
             next();
         });
-
     };
 
 }
