@@ -87,14 +87,3 @@ Session Contents:
 
 }
 ```
-
-
-```
-       run
-
-create     resume
-  |          |
-  |      run exit hook
-
-      exec
-```
