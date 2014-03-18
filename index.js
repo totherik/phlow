@@ -7,7 +7,7 @@ var c = require('./lib/constants');
 module.exports = function middleware(options) {
     var flow;
 
-    var flow = machine.create(options);
+    flow = machine.create(options);
 
     return function(res, res, next) {
         var key, state;
