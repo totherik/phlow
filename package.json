@@ -1,0 +1,26 @@
+{
+  "name": "phlow",
+  "version": "0.0.0",
+  "description": "ERROR: No README.md file found!",
+  "main": "index.js",
+  "directories": {
+    "test": "test"
+  },
+  "scripts": {
+    "test": "tape test/*.js",
+    "cover": "istanbul cover tape -- test/*.js",
+    "lint": "jshint -c .jshintrc index.js lib/*.js"
+  },
+  "repository": "",
+  "author": "Erik Toth <totherik@gmail.com>",
+  "license": "MIT",
+  "devDependencies": {
+    "tape": "~2.10.2",
+    "istanbul": "~0.2.6",
+    "jshint": "~2.4.4"
+  },
+  "dependencies": {
+    "core-util-is": "~1.0.1",
+    "debuglog": "~1.0.1"
+  }
+}
